@@ -11,12 +11,15 @@ const startServer = async () => {
   try {
     await mongoose.connect(envVar.DB_URL);
 
+    // eslint-disable-next-line no-console
     console.log("DB is connected..");
 
     server = app.listen(envVar.PORT, () => {
+      // eslint-disable-next-line no-console
       console.log(`App is listenning from port ${envVar.PORT}`);
     });
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.log(error);
   }
 };
