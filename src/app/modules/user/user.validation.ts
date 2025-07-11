@@ -27,6 +27,7 @@ export const createUserZodSchema = z.object({
     .regex(/(?=.*\d)/, { message: "At least one number" }),
 });
 
+
 export const updateUserZodSchema = z.object({
   name: z
     .string({ invalid_type_error: "Name must be a string" })
