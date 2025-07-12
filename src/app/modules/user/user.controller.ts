@@ -36,11 +36,10 @@ const getAllUser = catchAsync(async (req: Request, res: Response, next:NextFunct
 
 const updateUser = catchAsync(async (req: Request, res: Response, next:NextFunction) => {
   const userId = req.params.id;
-  const token = req.headers.authorization as string;
-  const verfiedToken = verifyToken(token, envVar.JWT_ACCESS_SECRET);
+  const verifiedToken = req.user;
   const payload = req.body;
 
-  const result = await UserServices.updateUser(userId, payload, verfiedToken as JwtPayload);
+  const result = await UserServices.updateUser(userId, payload, verifiedToken as JwtPayload);
   sendResponse(res, {
     success:true,
     message: "User updated Successfully",

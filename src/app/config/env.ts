@@ -7,6 +7,8 @@ interface EnvConfig {
   NODE_ENV: "development" | "production";
   JWT_ACCESS_SECRET:string;
   JWT_ACCESS_EXPIRES:string;
+  JWT_REFRESH_EXPIRES:string;
+  JWT_REFRESH_SECRET:string;
   BCRYPT_SALT_ROUND:string;
   SUPER_ADMIN_PASSWORD:string;
   SUPER_ADMIN_EMAIL:string;
@@ -26,7 +28,9 @@ const loadEnvVar = (): EnvConfig => ({
   BCRYPT_SALT_ROUND:getEnv("BCRYPT_SALT_ROUND"),
   JWT_ACCESS_EXPIRES:getEnv("JWT_ACCESS_EXPIRES"),
   SUPER_ADMIN_EMAIL:getEnv("SUPER_ADMIN_EMAIL"),
-  SUPER_ADMIN_PASSWORD:getEnv("SUPER_ADMIN_PASSWORD")
+  SUPER_ADMIN_PASSWORD:getEnv("SUPER_ADMIN_PASSWORD"),
+  JWT_REFRESH_EXPIRES:getEnv("JWT_REFRESH_EXPIRES"),
+  JWT_REFRESH_SECRET:getEnv("JWT_REFRESH_SECRET")
 });
 
 export const envVar = loadEnvVar();

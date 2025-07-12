@@ -20,6 +20,7 @@ export const checkAuth =
       if (!authRoles.includes(verifiedToken.role)) {
         throw new AppError(403, "You are not authorized to view the content");
       }
+      req.user = verifiedToken;
       next();
     } catch (error) {
       next(error);

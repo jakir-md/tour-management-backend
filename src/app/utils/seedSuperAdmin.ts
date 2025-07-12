@@ -11,7 +11,7 @@ export const seedSuperAdmin = async () => {
 
     if (isSuperAdminExists) {
       // eslint-disable-next-line no-console
-      console.log("Super Admin Already Exists", isSuperAdminExists);
+      console.log("Super Admin Already Exists");
       return;
     }
 
