@@ -2,10 +2,22 @@ import z, { string } from "zod";
 import { ISActive, Role } from "./user.interface";
 
 export const createUserZodSchema = z.object({
-  name: z
-    .string({ invalid_type_error: "Name must be a string" })
-    .min(2, { message: "Name must be at least 2 characters long" })
-    .max(50, { message: "Name can be maximum 50 characters long" }),
+  name: z.object({
+    firstName: z
+      .string({ invalid_type_error: "Name must be a string" })
+      .min(2, { message: "Name must be at least 2 characters long" })
+      .max(50, { message: "Name can be maximum 50 characters long" }),
+    lastName: z.object({
+      surname: z
+        .string({ invalid_type_error: "Name must be a string" })
+        .min(2, { message: "Name must be at least 2 characters long" })
+        .max(50, { message: "Name can be maximum 50 characters long" }),
+      nickName: z
+        .string({ invalid_type_error: "Name must be a string" })
+        .min(2, { message: "Name must be at least 2 characters long" })
+        .max(50, { message: "Name can be maximum 50 characters long" }),
+    }),
+  }),
   email: z.string().email({ message: "Invalid email address format" }),
   phone: string({
     invalid_type_error: "Phone number must be a string",
@@ -26,7 +38,6 @@ export const createUserZodSchema = z.object({
     })
     .regex(/(?=.*\d)/, { message: "At least one number" }),
 });
-
 
 export const updateUserZodSchema = z.object({
   name: z
@@ -55,10 +66,14 @@ export const updateUserZodSchema = z.object({
     .optional(),
   isActive: z.enum(Object.values(ISActive) as [string]).optional(),
   role: z.enum(Object.values(Role) as [string]).optional(),
-  isDeleted: z.boolean({
-    invalid_type_error: "isDeleted must be a boolean value",
-  }),
-  isVerified: z.boolean({
-    invalid_type_error: "isVerified must be a boolean value",
-  }),
+  isDeleted: z
+    .boolean({
+      invalid_type_error: "isDeleted must be a boolean value",
+    })
+    .optional(),
+  isVerified: z
+    .boolean({
+      invalid_type_error: "isVerified must be a boolean value",
+    })
+    .optional(),
 });
