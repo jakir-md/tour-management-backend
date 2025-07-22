@@ -32,5 +32,5 @@ export interface IUser {
     role: Role;
     auths: IAuthProviders[]; // 1 ta interface er vitore arekta interface. tai schema bananor somoy embeded schema banaite hobe
     bookings?: Types.ObjectId[];
-    guides?: Types.ObjectId[]
+    guides?: Types.ObjectId[];
 }

@@ -24,7 +24,7 @@ const updateDivision = catchAsync(
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async (req: Request, res: Response, next: NextFunction) => {
     const id = req.params.id;
-    const result = await DivisionServices.updateDivision(id,req.body);
+    const result = await DivisionServices.updateDivision(id, req.body);
     sendResponse(res, {
       success: true,
       message: "Division Updated Successfully",
@@ -34,7 +34,32 @@ const updateDivision = catchAsync(
   }
 );
 
+const getAllDivisions = catchAsync(async (req: Request, res: Response) => {
+  const result = await DivisionServices.getAllDivisions();
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: "Divisions retrieved",
+    data: result.data,
+    meta: result.meta,
+  });
+});
+
+const getSingleDivision = catchAsync(async (req: Request, res: Response) => {
+  const slug = req.params.slug;
+  const result = await DivisionServices.getSingleDivision(slug);
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: "Divisions retrieved",
+    data: result.data,
+    meta: result.meta,
+  });
+});
+
 export const DivisionControllers = {
   createDivision,
-  updateDivision
+  updateDivision,
+  getAllDivisions,
+  getSingleDivision
 };

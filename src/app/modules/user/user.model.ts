@@ -49,6 +49,8 @@ const userSchema = new Schema<IUser>(
     // guides
     // bookings
     // we'll create them later
+
+    bookings: [Schema.Types.ObjectId]
   },
   {
     versionKey: false,
